@@ -15,7 +15,6 @@ export const hello = async (req: Request, res: Response): Promise<string | any> 
 export const register = async (req: Request, res: Response) => {
     try {
         const {name, username, email, password, role} = req.body;
-        console.log(name, username)
         const user = await User.create({name, username, email, password, role});
         res.status(201).json({message: 'User registered', user});
     } catch (error: any) {
@@ -41,4 +40,5 @@ export const login = async (req: Request, res: Response): Promise<any> => {
     } catch (error: any) {
         res.status(500).json({error: error.message});
     }
+
 };

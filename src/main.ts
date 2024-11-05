@@ -1,12 +1,15 @@
 
 import  express from 'express';
 import authRoutes from "./routes/authRoutes";
-import {connectDB} from "./config/db";
+import {connectDB} from "./common/config/db";
 import dotenv from 'dotenv';
+import {initializePassport} from "./common/config/passport.Config";
+import passport from "passport";
 dotenv.config();
-
-connectDB()
 const app =   express();
+connectDB()
+initializePassport();
+app.use(passport.initialize());
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 
